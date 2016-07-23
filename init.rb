@@ -22,4 +22,6 @@ Rails.application.config.to_prepare do
   Redmine::Export::PDF::ITCPDF.send(:include, QrPdf::PdfPatch)
   Redmine::Export::PDF::IssuesPdfHelper.send(:include, QrPdf::PdfHelperPatch)
   IssuesController.send(:include, QrPdf::IssuesControllerPatch)
+  IssueQuery.send(:include, QrPdf::IssueQueryPatch)
+  QueryColumn.send(:include, QrPdf::QueryPatch)
 end

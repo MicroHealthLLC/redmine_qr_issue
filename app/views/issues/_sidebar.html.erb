@@ -1,21 +1,22 @@
 <h3><%= l(:label_issue_plural) %></h3>
 
 <ul>
-<li><%= link_to l(:label_issue_view_all), _project_issues_path(@project, :set_filter => 1) %></li>
-<% if @project %>
-<li><%= link_to l(:field_summary), project_issues_report_path(@project) %></li>
-<% end %>
+  <li><%= link_to l(:label_issue_view_all), _project_issues_path(@project, :set_filter => 1) %></li>
+  <% if @project %>
+      <li><%= link_to l(:field_summary), project_issues_report_path(@project) %></li>
+  <% end %>
 
-<% if User.current.allowed_to?(:view_calendar, @project, :global => true) %>
-<li><%= link_to l(:label_calendar), _project_calendar_path(@project) %></li>
-<% end %>
-<% if User.current.allowed_to?(:view_gantt, @project, :global => true) %>
-<li><%= link_to l(:label_gantt), _project_gantt_path(@project) %></li>
-<% end %>
+  <% if User.current.allowed_to?(:view_calendar, @project, :global => true) %>
+      <li><%= link_to l(:label_calendar), _project_calendar_path(@project) %></li>
+  <% end %>
+  <% if User.current.allowed_to?(:view_gantt, @project, :global => true) %>
+      <li><%= link_to l(:label_gantt), _project_gantt_path(@project) %></li>
+  <% end %>
 
-<% if User.current.allowed_to?(:import_issues, @project, :global => true) %>
-<li><%= link_to l(:button_import), new_issues_import_path %></li>
-<% end %>
+  <% if User.current.allowed_to?(:import_issues, @project, :global => true) %>
+      <li><%= link_to l(:button_import), new_issues_import_path %></li>
+  <% end %>
+  <li><%= link_to('Export Qr code', export_qr_code_path(params: params)) if params[:action] == 'index' %></li>
 </ul>
 
 <%= call_hook(:view_issues_sidebar_issues_bottom) %>
@@ -25,14 +26,12 @@
 <%= call_hook(:view_issues_sidebar_queries_bottom) %>
 
 <%= javascript_include_tag 'jquery.qrcode.min.js', :plugin => 'redmine_qr_issue' %>
-
-<div class="qrcode" title="<%= request.url %>"></div>
 <script type="text/javascript">
   (function($){
     $(document).ready(function() {
       $(".qrcode").each(function() {
         var e = $(this);
-        e.qrcode({width:250,height:250,text:e.attr('title')});
+        e.qrcode({width:50,height:50,text:e.attr('title')});
       });
     });
   })(jQuery);
