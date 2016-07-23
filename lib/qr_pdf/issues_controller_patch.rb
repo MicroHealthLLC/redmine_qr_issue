@@ -36,7 +36,7 @@ module QrPdf
         end
 
         labels = Prawn::Labels.render(qr_code_urls, :type => "Avery5160") do |pdf, hash|
-          image = path + "issue_#{hash[:id]}.png"
+          image = path + "/issue_#{hash[:id]}.png"
           unless FileTest.exist?(image)
             qr = RQRCode::QRCode.new( hash[:url], :size => 4, :level => :h )
             png = qr.to_img
