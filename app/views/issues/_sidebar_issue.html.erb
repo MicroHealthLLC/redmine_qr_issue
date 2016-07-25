@@ -6,7 +6,7 @@
 <script type="text/javascript">
   (function($){
     $(document).ready(function() {
-      $(".qrcode").each(function() {
+      $(".issue_qrcode").each(function() {
         var e = $(this);
         e.qrcode({width:50,height:50,text:e.attr('title')});
       });
