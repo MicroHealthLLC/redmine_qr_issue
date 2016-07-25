@@ -16,6 +16,7 @@ class Hooks < Redmine::Hook::ViewListener
   #   :f      => the form object to create additional fields
 
   render_on :view_issues_show_details_bottom, :partial=> 'issues/issue_qr'
+  render_on :view_issues_sidebar_issues_bottom, :partial=> 'issues/sidebar_issue'
 end
 
 Rails.application.config.to_prepare do
