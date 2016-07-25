@@ -5,11 +5,11 @@
 <%= javascript_include_tag 'jquery.qrcode.min.js', :plugin => 'redmine_qr_issue' %>
 <script type="text/javascript">
   (function($){
-    $(document).ready(function() {
-      $(".issue_qrcode").each(function() {
-        var e = $(this);
-        e.qrcode({width:50, height:50, text:e.attr('title')});
-      });
+
+    $(".issue_qrcode").each(function() {
+      var e = $(this);
+      e.qrcode({width:50, height:50, text:e.attr('title')});
+
     });
   })(jQuery);
 </script>
