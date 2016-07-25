@@ -28,7 +28,13 @@ module QrPdf
       if @query.valid?
         @issues = @query.issues
 
-        qr_code_urls = @issues.map{|issue| {id: issue.id, url: issue_url(issue) } }
+        qr_code_urls = @issues.map{|issue|
+          {
+              id: issue.id,
+              url: issue_url(issue),
+              subject: "#{issue.id}: #{issue.subject}"
+          }
+        }
         storage_path = Redmine::Configuration['attachments_storage_path'] || File.join(Rails.root, "files")
         path = storage_path + "/qr_codes"
         unless File.directory?(path)
@@ -43,7 +49,9 @@ module QrPdf
             png = qr.to_img
             png.resize(70,  70).save(image)
           end
+          subject = hash[:subject]
           pdf.image image
+          pdf.text subject
         end
         send_data labels, :filename => "qr_codes.pdf", :type => "application/pdf"
       end
