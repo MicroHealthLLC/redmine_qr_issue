@@ -41,7 +41,13 @@ module QrPdf
           FileUtils.mkdir_p(path)
         end
 
-        labels = Prawn::Labels.render(qr_code_urls, :type => "Avery5160") do |pdf, hash|
+        Prawn::Labels.types = {
+            "QuarterSheet" => {
+                "paper_size" => "A4",
+                "columns"    => 3,
+                "rows"       => 8
+            }}
+        labels = Prawn::Labels.render(qr_code_urls, :type => "QuarterSheet") do |pdf, hash|
           image = path + "/issue_#{hash[:id]}.png"
           unless FileTest.exist?(image)
 
