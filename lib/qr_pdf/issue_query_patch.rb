@@ -27,7 +27,7 @@ module  QrPdf
   module QueryInstanceMethods
     def value_object_with_qr_code(object)
       if name == :qr_code
-        "<div class='qrcode' title='#{issue_url(object, host: Setting.host_name) }'></div>".html_safe
+        "<div class='issue_qrcode' title='#{issue_url(object, host: Setting.host_name) }'></div>".html_safe
       else
         value_object_without_qr_code(object)
       end

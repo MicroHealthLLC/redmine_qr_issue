@@ -1,5 +1,5 @@
 <ul>
-  <li><%= link_to('Export Qr code', export_qr_code_path(params: params)) if params[:action] == 'index' %></li>
+  <li><%= link_to('Export Qr code', export_qr_code_path(params: params.except(:action, :controller))) if params[:action] == 'index' %></li>
 </ul>
 
 <%= javascript_include_tag 'jquery.qrcode.min.js', :plugin => 'redmine_qr_issue' %>
@@ -8,7 +8,7 @@
     $(document).ready(function() {
       $(".issue_qrcode").each(function() {
         var e = $(this);
-        e.qrcode({width:50,height:50,text:e.attr('title')});
+        e.qrcode({width:50, height:50, text:e.attr('title')});
       });
     });
   })(jQuery);
