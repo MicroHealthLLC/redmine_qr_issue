@@ -42,12 +42,18 @@ module QrPdf
         end
 
         Prawn::Labels.types = {
-            "QuarterSheet" => {
+            "AverySheet" => {
                 "paper_size" => "A4",
                 "columns"    => 3,
-                "rows"       => 8
+                "rows"       => 7,
+                'top_margin': 43.9,
+                'bottom_margin': 43.9,
+                'left_margin': 19.843,
+                'right_margin': 19.843,
+                'column_gutter': 8.504,
+                'row_gutter': 0,
             }}
-        labels = Prawn::Labels.render(qr_code_urls, :type => "QuarterSheet") do |pdf, hash|
+        labels = Prawn::Labels.render(qr_code_urls, :type => "AverySheet") do |pdf, hash|
           image = path + "/issue_#{hash[:id]}.png"
           unless FileTest.exist?(image)
 
