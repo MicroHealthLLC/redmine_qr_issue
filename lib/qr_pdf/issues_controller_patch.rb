@@ -48,7 +48,7 @@ module QrPdf
                 "rows"          => 7,
                 'top_margin'    => 43.9,
                 'bottom_margin' => 43.9,
-                'left_margin'   => 19.843,
+                'left_margin'   => 50,
                 'right_margin'  => 19.843,
                 'column_gutter' => 8.504,
                 'row_gutter'    => 0,
